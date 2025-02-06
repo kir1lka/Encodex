@@ -1,6 +1,9 @@
 #pragma once
 
+
 namespace $safeprojectname$ {
+
+
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -13,6 +16,7 @@ namespace $safeprojectname$ {
 	/// Summary for MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form {
+		
 	public:
 		MyForm(void) {
 			InitializeComponent();
@@ -32,13 +36,42 @@ namespace $safeprojectname$ {
 				delete components;
 			}
 		}
+	
+
 	private: 
 		System::Windows::Forms::TextBox^ txtInput;
-		System::Windows::Forms::TextBox^ txtKey;
-		System::Windows::Forms::Button^ btnEncrypt;
-		System::Windows::Forms::Button^ btnDecrypt;
-		System::Windows::Forms::Button^ btnCopy;
-		System::Windows::Forms::Label^ lblResult;
+	private: System::Windows::Forms::TabControl^ tabControl1;
+	private: System::Windows::Forms::TabPage^ tabPage1;
+	private: System::Windows::Forms::TabPage^ tabPage2;
+	private: System::Windows::Forms::TabPage^ tabPage3;
+	private: System::Windows::Forms::TabPage^ tabPage4;
+
+
+	private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	protected:
 
 	private:
@@ -55,136 +88,160 @@ namespace $safeprojectname$ {
 		void InitializeComponent(void)
 		{
 			this->txtInput = (gcnew System::Windows::Forms::TextBox());
-			this->txtKey = (gcnew System::Windows::Forms::TextBox());
-			this->btnEncrypt = (gcnew System::Windows::Forms::Button());
-			this->btnDecrypt = (gcnew System::Windows::Forms::Button());
-			this->btnCopy = (gcnew System::Windows::Forms::Button());
-			this->lblResult = (gcnew System::Windows::Forms::Label());
+			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
+			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+			this->tabControl1->SuspendLayout();
+			this->tabPage1->SuspendLayout();
+			this->tableLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// txtInput
 			// 
-			this->txtInput->Location = System::Drawing::Point(20, 20);
+			this->txtInput->Location = System::Drawing::Point(0, 0);
 			this->txtInput->Name = L"txtInput";
-			this->txtInput->Size = System::Drawing::Size(250, 22);
+			this->txtInput->Size = System::Drawing::Size(100, 22);
 			this->txtInput->TabIndex = 0;
-			this->txtInput->Text = L"Введите текст";
 			// 
-			// txtKey
+			// tabControl1
 			// 
-			this->txtKey->Location = System::Drawing::Point(20, 50);
-			this->txtKey->Name = L"txtKey";
-			this->txtKey->Size = System::Drawing::Size(250, 22);
-			this->txtKey->TabIndex = 1;
-			this->txtKey->Text = L"Введите ключ";
+			this->tabControl1->Controls->Add(this->tabPage1);
+			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Controls->Add(this->tabPage4);
+			this->tabControl1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tabControl1->Location = System::Drawing::Point(0, 0);
+			this->tabControl1->Name = L"tabControl1";
+			this->tabControl1->SelectedIndex = 0;
+			this->tabControl1->Size = System::Drawing::Size(974, 493);
+			this->tabControl1->TabIndex = 0;
 			// 
-			// btnEncrypt
+			// tabPage1
 			// 
-			this->btnEncrypt->Location = System::Drawing::Point(20, 80);
-			this->btnEncrypt->Name = L"btnEncrypt";
-			this->btnEncrypt->Size = System::Drawing::Size(120, 30);
-			this->btnEncrypt->TabIndex = 2;
-			this->btnEncrypt->Text = L"Зашифровать";
-			this->btnEncrypt->Click += gcnew System::EventHandler(this, &MyForm::OnEncryptClick);
+			this->tabPage1->AutoScroll = true;
+			this->tabPage1->Controls->Add(this->tableLayoutPanel1);
+			this->tabPage1->Location = System::Drawing::Point(4, 25);
+			this->tabPage1->Name = L"tabPage1";
+			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage1->Size = System::Drawing::Size(966, 464);
+			this->tabPage1->TabIndex = 0;
+			this->tabPage1->Text = L"Симметричное";
+			this->tabPage1->UseVisualStyleBackColor = true;
 			// 
-			// btnDecrypt
+			// tableLayoutPanel1
 			// 
-			this->btnDecrypt->Location = System::Drawing::Point(150, 80);
-			this->btnDecrypt->Name = L"btnDecrypt";
-			this->btnDecrypt->Size = System::Drawing::Size(120, 30);
-			this->btnDecrypt->TabIndex = 3;
-			this->btnDecrypt->Text = L"Расшифровать";
-			this->btnDecrypt->Click += gcnew System::EventHandler(this, &MyForm::OnDecryptClick);
+			this->tableLayoutPanel1->ColumnCount = 1;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				100)));
+			this->tableLayoutPanel1->Controls->Add(this->button1, 0, 1);
+			this->tableLayoutPanel1->Controls->Add(this->webBrowser1, 0, 0);
+			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 3);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 2;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 90)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 10)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(960, 458);
+			this->tableLayoutPanel1->TabIndex = 2;
 			// 
-			// btnCopy
+			// button1
 			// 
-			this->btnCopy->Location = System::Drawing::Point(20, 120);
-			this->btnCopy->Name = L"btnCopy";
-			this->btnCopy->Size = System::Drawing::Size(250, 30);
-			this->btnCopy->TabIndex = 4;
-			this->btnCopy->Text = L"Скопировать результат";
-			this->btnCopy->Click += gcnew System::EventHandler(this, &MyForm::OnCopyClick);
+			this->button1->Dock = System::Windows::Forms::DockStyle::Right;
+			this->button1->Location = System::Drawing::Point(765, 415);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(192, 40);
+			this->button1->TabIndex = 2;
+			this->button1->Text = L"Пример шифрования";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
-			// lblResult
+			// webBrowser1
 			// 
-			this->lblResult->Location = System::Drawing::Point(20, 160);
-			this->lblResult->Name = L"lblResult";
-			this->lblResult->Size = System::Drawing::Size(250, 50);
-			this->lblResult->TabIndex = 5;
-			this->lblResult->Text = L"Результат: ";
+			this->webBrowser1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->webBrowser1->Location = System::Drawing::Point(3, 48);
+			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
+			this->webBrowser1->Name = L"webBrowser1";
+			this->webBrowser1->Size = System::Drawing::Size(954, 360);
+			this->webBrowser1->TabIndex = 3;
+			this->webBrowser1->DocumentText =
+				"<html> <body> "
+				"<h2>Симметричное шифрование</h2> "
+				"<p> Симметричное шифрование — это способ шифрования данных, при котором один и тот же ключ используется и для кодирования, и для восстановления информации. "
+				"До 1970-х годов, когда появились первые асимметричные шифры, оно было единственным криптографическим методом. </p> "
+				"<h3>Принцип работы симметричных алгоритмов</h3> "
+				"<p> В целом симметричным считается любой шифр, использующий один и тот же секретный ключ для шифрования и расшифровки. </p> "
+				"<p> Например, если алгоритм предполагает замену букв числами, то и у отправителя сообщения, и у его получателя должна быть одна и та же таблица соответствия букв и чисел: "
+				"первый с ее помощью шифрует сообщения, а второй — расшифровывает. </p> "
+				"<img src=\"https://habrastorage.org/webt/or/pn/ar/orpnarkw6jyoz-vdtqwwf7ap4vi.png\" width=\"500\" /> "
+				"<h3>Виды алгоритмов симметричного шифрования</h3> "
+				"<p>Алгоритмы симметричного шифрования делятся на два типа:</p> "
+				"<ul> <li>Блочные</li> <li>Потоковые</li> </ul> "
+				"<h4>Блочные алгоритмы</h4> "
+				"<p> Блочные алгоритмы шифруют данные блоками фиксированной длины (например, 128 бит). Примеры: </p> "
+				"<ul> <li>AES</li> <li>ГОСТ 28147-89</li> <li>RC5</li> <li>Blowfish</li> <li>Twofish</li> </ul> "
+				"<h4>Потоковые алгоритмы</h4> "
+				"<p> Потоковое шифрование работает с каждым битом данных отдельно, используя гаммирование. Примеры: </p> "
+				"<ul> <li>RC4</li> <li>Salsa20</li> <li>HC-256</li> <li>WAKE</li> </ul> "
+				"<h3>Достоинства и недостатки</h3> "
+				"<p> Симметричные алгоритмы требуют меньше ресурсов и работают быстрее, чем асимметричные. "
+				"Однако главный их недостаток — необходимость передачи ключа, что может быть небезопасно. </p> "
+				"<h3>Область применения</h3> "
+				"<p> Симметричное шифрование широко используется в мессенджерах, видеосвязи и защищенных транспортных протоколах, таких как TLS. </p> "
+				"</body> </html>";
+
+
+			// 
+			// tabPage2
+			// 
+			this->tabPage2->Location = System::Drawing::Point(4, 25);
+			this->tabPage2->Name = L"tabPage2";
+			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage2->Size = System::Drawing::Size(966, 464);
+			this->tabPage2->TabIndex = 1;
+			this->tabPage2->Text = L"Асимметричное";
+			this->tabPage2->UseVisualStyleBackColor = true;
+			// 
+			// tabPage3
+			// 
+			this->tabPage3->Location = System::Drawing::Point(4, 25);
+			this->tabPage3->Name = L"tabPage3";
+			this->tabPage3->Size = System::Drawing::Size(966, 464);
+			this->tabPage3->TabIndex = 2;
+			this->tabPage3->Text = L"Хэш-функция";
+			this->tabPage3->UseVisualStyleBackColor = true;
+			// 
+			// tabPage4
+			// 
+			this->tabPage4->Location = System::Drawing::Point(4, 25);
+			this->tabPage4->Name = L"tabPage4";
+			this->tabPage4->Size = System::Drawing::Size(966, 464);
+			this->tabPage4->TabIndex = 3;
+			this->tabPage4->Text = L"Гибридное";
+			this->tabPage4->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
-			this->ClientSize = System::Drawing::Size(287, 305);
-			this->Controls->Add(this->txtInput);
-			this->Controls->Add(this->txtKey);
-			this->Controls->Add(this->btnEncrypt);
-			this->Controls->Add(this->btnDecrypt);
-			this->Controls->Add(this->btnCopy);
-			this->Controls->Add(this->lblResult);
+			this->ClientSize = System::Drawing::Size(974, 493);
+			this->Controls->Add(this->tabControl1);
 			this->Name = L"MyForm";
-			this->Text = L"XOR Шифрование";
-
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Encodex";
+			this->tabControl1->ResumeLayout(false);
+			this->tabPage1->ResumeLayout(false);
+			this->tableLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
 
-		String^ XOREncryptDecrypt(String^ text, String^ key) {
-			if (String::IsNullOrEmpty(text) || String::IsNullOrEmpty(key))
-				return L"Ошибка: Пустой текст или ключ!";
-
-			array<unsigned char>^ textArr = System::Text::Encoding::UTF8->GetBytes(text);
-			array<unsigned char>^ keyArr = System::Text::Encoding::UTF8->GetBytes(key);
-			int keyLen = keyArr->Length;
-
-			for (int i = 0; i < textArr->Length; i++) {
-				textArr[i] ^= keyArr[i % keyLen];
-			}
-
-			return System::Text::Encoding::UTF8->GetString(textArr);
-		}
+	
 
 
-		// Обработчик кнопки "Зашифровать"
-		void OnEncryptClick(System::Object^ sender, System::EventArgs^ e) {
-			String^ inputText = txtInput->Text;
-			String^ key = txtKey->Text;
 
-			if (String::IsNullOrEmpty(inputText) || String::IsNullOrEmpty(key)) {
-				MessageBox::Show(L"Введите текст и ключ!", L"Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
-			}
-
-			String^ encryptedText = XOREncryptDecrypt(inputText, key);
-			lblResult->Text = L"Результат: " + encryptedText;
-		}
-
-		// Обработчик кнопки "Расшифровать"
-		void OnDecryptClick(System::Object^ sender, System::EventArgs^ e) {
-			String^ encryptedText = txtInput->Text;
-			String^ key = txtKey->Text;
-
-			if (String::IsNullOrEmpty(encryptedText) || String::IsNullOrEmpty(key)) {
-				MessageBox::Show(L"Введите зашифрованный текст и ключ!", L"Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
-			}
-
-			String^ decryptedText = XOREncryptDecrypt(encryptedText, key);
-			lblResult->Text = L"Результат: " + decryptedText;
-		}
-
-		// Обработчик кнопки "Скопировать"
-		void OnCopyClick(System::Object^ sender, System::EventArgs^ e) {
-			if (!String::IsNullOrEmpty(lblResult->Text) && lblResult->Text != "Результат: ") {
-				String^ textToCopy = lblResult->Text->Replace("Результат: ", "");
-				Clipboard::SetText(textToCopy);
-				MessageBox::Show(L"Текст скопирован!", L"Успех", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			}
-			else {
-				MessageBox::Show(L"Нет текста для копирования!", L"Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			}
-		}
-	};
+};
 }

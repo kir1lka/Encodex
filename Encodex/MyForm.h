@@ -50,27 +50,14 @@ namespace $safeprojectname$ {
 	private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::WebBrowser^ webBrowser1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	private:
+		   System::Windows::Forms::Panel^ panelAES;
+		   System::Windows::Forms::TextBox^ txtAESInput;
+		   System::Windows::Forms::Button^ btnEncrypt;
+		   System::Windows::Forms::Button^ btnDecrypt;
+		   System::Windows::Forms::Button^ btnSelectFile;
+		   System::Windows::Forms::Label^ lblStatus;
+		   System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 
 	protected:
 
@@ -87,6 +74,13 @@ namespace $safeprojectname$ {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->panelAES = (gcnew System::Windows::Forms::Panel());
+			this->txtAESInput = (gcnew System::Windows::Forms::TextBox());
+			this->btnEncrypt = (gcnew System::Windows::Forms::Button());
+			this->btnDecrypt = (gcnew System::Windows::Forms::Button());
+			this->btnSelectFile = (gcnew System::Windows::Forms::Button());
+			this->lblStatus = (gcnew System::Windows::Forms::Label());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->txtInput = (gcnew System::Windows::Forms::TextBox());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -107,6 +101,50 @@ namespace $safeprojectname$ {
 			this->txtInput->Name = L"txtInput";
 			this->txtInput->Size = System::Drawing::Size(100, 22);
 			this->txtInput->TabIndex = 0;
+			// 
+			// panelAES
+			// 
+			this->panelAES->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panelAES->Visible = false;  // По умолчанию скрыта
+			this->panelAES->Controls->Add(this->txtAESInput);
+			this->panelAES->Controls->Add(this->btnEncrypt);
+			this->panelAES->Controls->Add(this->btnDecrypt);
+			this->panelAES->Controls->Add(this->btnSelectFile);
+			this->panelAES->Controls->Add(this->lblStatus);
+			this->tableLayoutPanel1->Controls->Add(this->panelAES, 0, 0);
+
+			// 
+			// txtAESInput
+			// 
+			this->txtAESInput->Location = System::Drawing::Point(20, 20);
+			this->txtAESInput->Size = System::Drawing::Size(400, 22);
+
+			// 
+			// btnEncrypt
+			// 
+			this->btnEncrypt->Text = L"Зашифровать";
+			this->btnEncrypt->Location = System::Drawing::Point(20, 60);
+			this->btnEncrypt->Click += gcnew System::EventHandler(this, &MyForm::btnEncrypt_Click);
+
+			// 
+			// btnDecrypt
+			// 
+			this->btnDecrypt->Text = L"Расшифровать";
+			this->btnDecrypt->Location = System::Drawing::Point(150, 60);
+			this->btnDecrypt->Click += gcnew System::EventHandler(this, &MyForm::btnDecrypt_Click);
+
+			// 
+			// btnSelectFile
+			// 
+			this->btnSelectFile->Text = L"Выбрать файл";
+			this->btnSelectFile->Location = System::Drawing::Point(280, 60);
+			this->btnSelectFile->Click += gcnew System::EventHandler(this, &MyForm::btnSelectFile_Click);
+
+			// 
+			// lblStatus
+			// 
+			this->lblStatus->Text = L"Выберите файл или введите текст";
+			this->lblStatus->Location = System::Drawing::Point(20, 100);
 			// 
 			// tabControl1
 			// 
@@ -157,16 +195,17 @@ namespace $safeprojectname$ {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(192, 40);
 			this->button1->TabIndex = 2;
-			this->button1->Text = L"Пример шифрования";
+			this->button1->Text = L"Теория/Практика";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// webBrowser1
 			// 
 			this->webBrowser1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->webBrowser1->Location = System::Drawing::Point(3, 48);
+			this->webBrowser1->Location = System::Drawing::Point(3, 3);
 			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
 			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(954, 360);
+			this->webBrowser1->Size = System::Drawing::Size(954, 406);
 			this->webBrowser1->TabIndex = 3;
 			this->webBrowser1->DocumentText =
 				"<html> <body> "
@@ -193,7 +232,6 @@ namespace $safeprojectname$ {
 				"<h3>Область применения</h3> "
 				"<p> Симметричное шифрование широко используется в мессенджерах, видеосвязи и защищенных транспортных протоколах, таких как TLS. </p> "
 				"</body> </html>";
-
 
 			// 
 			// tabPage2
@@ -242,6 +280,24 @@ namespace $safeprojectname$ {
 	
 
 
+
+private:
+		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->webBrowser1->Visible = !this->webBrowser1->Visible;
+			this->panelAES->Visible = !this->panelAES->Visible;
+		}
+		System::Void btnSelectFile_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				lblStatus->Text = L"Выбран файл: " + openFileDialog1->FileName;
+			}
+		}
+		private: System::Void btnEncrypt_Click(System::Object^ sender, System::EventArgs^ e) {
+			lblStatus->Text = L"Текст зашифрован!";  
+		}
+
+		private: System::Void btnDecrypt_Click(System::Object^ sender, System::EventArgs^ e) {
+			lblStatus->Text = L"Текст расшифрован!"; 
+		}
 
 };
 }
